@@ -72,10 +72,19 @@ public class Tests {
 
 		}
 		@Test
-		public void correctGuessesNumberAfterGuessTest() {
+		public void correctGuessesNumberAfterLetterGuessTest() {
 			GameState testgamestate = new GameState("banana", 5, 6);
 			testgamestate.checkLetterGuess('c');
 			testgamestate.checkLetterGuess('e');	
+			assertEquals(testgamestate.getGuessesTaken(), 2);
+			assertEquals(testgamestate.getGuessesLeft(), 3);	
+		}
+		
+		@Test
+		public void correctGuessesNumberAfterWordGuessTest() {
+			GameState testgamestate = new GameState("banana", 5, 6);
+			testgamestate.checkWordGuess("cat");
+			testgamestate.checkWordGuess("apple");	
 			assertEquals(testgamestate.getGuessesTaken(), 2);
 			assertEquals(testgamestate.getGuessesLeft(), 3);	
 		}
