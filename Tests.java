@@ -52,11 +52,36 @@ public class Tests {
 		
 		///////////////////////////////////////////////////////////
 		@Test
-		public void guessTest() {
-			//note: it's really hard to test guesses because of uder input
-			//solution: change, so user input is fed into separate guess function.
-			
+		public void guessLettersTest() {
+			GameState testgamestate = new GameState("banana", 5, 6);
+			assertFalse(testgamestate.checkLetterGuess('c'));
+			assertTrue(testgamestate.checkLetterGuess('b'));		
 		}
+		@Test
+		public void guessWordsTest() {
+			GameState testgamestate = new GameState("banana", 5, 6);
+			assertFalse(testgamestate.checkWordGuess("cat"));
+			assertTrue(testgamestate.checkWordGuess("banana"));		
+		}
+		@Test
+		public void correctHintsNumberAfterGuessTest() {
+			GameState testgamestate = new GameState("banana", 5, 6);
+			testgamestate.checkLetterGuess('c');
+			testgamestate.checkLetterGuess('e');	
+			assertEquals(testgamestate.getHintsLeft(), 6);
+
+		}
+		@Test
+		public void correctGuessesNumberAfterGuessTest() {
+			GameState testgamestate = new GameState("banana", 5, 6);
+			testgamestate.checkLetterGuess('c');
+			testgamestate.checkLetterGuess('e');	
+			assertEquals(testgamestate.getGuessesTaken(), 2);
+			assertEquals(testgamestate.getGuessesLeft(), 3);	
+		}
+
+		
+		//////////////////////////////////////////////////////////
 
 
 	}

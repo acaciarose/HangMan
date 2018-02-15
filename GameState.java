@@ -15,7 +15,8 @@ public class GameState {
 
 	//Hints left
 	private int hintsLeft;
-	
+
+
 	//List of letters correctly guessed
 	ArrayList<Character> lettersGuessed;
 	//List of letters not yet guessed
@@ -161,5 +162,14 @@ public class GameState {
 
 	public void setGuessesLeft(int guessesLeft) {
 		this.guessesLeft = guessesLeft;
+	}
+	
+	
+	public int getHintsLeft() {
+		return hintsLeft;
+	}
+
+	public void setHintsLeft(int hintsLeft) {
+		this.hintsLeft = hintsLeft;
 	}
 }
