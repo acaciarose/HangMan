@@ -136,13 +136,17 @@ public class GameState {
 
 	//Show a hint (a random letter from the "not" list)
 	void hint() {
-		//possible bug here?
-		if (hintsLeft == 0) {
+		if (getHintsLeft() <= 0) {
 			System.out.println("No more hints allowed");
 		}
 		
+		else {
+		
 		System.out.print("Try: ");
 		System.out.println(lettersNotGuessed.get((int)(Math.random()*lettersNotGuessed.size())));
+		setHintsLeft(getHintsLeft() -1);
+		}
+		
 	}
 
 	public int getGuessesTaken() {
