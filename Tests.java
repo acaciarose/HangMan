@@ -79,9 +79,29 @@ public class Tests {
 			assertEquals(testgamestate.getGuessesTaken(), 2);
 			assertEquals(testgamestate.getGuessesLeft(), 3);	
 		}
-
 		
 		//////////////////////////////////////////////////////////
+		
+		@Test
+		public void correctHintsNumberAfterHintsTest() {
+			GameState testgamestate = new GameState("banana", 5, 6);
+			testgamestate.hint();
+			testgamestate.hint();
+			assertEquals(testgamestate.getHintsLeft(), 4);	
+		}
+		
+		@Test
+		public void zeroHintsLeftTest() {
+			GameState testgamestate = new GameState("banana", 5, 2);
+			testgamestate.hint();
+			testgamestate.hint();
+			testgamestate.hint();
+			testgamestate.hint();
+			assertEquals(testgamestate.getHintsLeft(), 0);	
+		}
+		
+		
+		
 
 
 	}
