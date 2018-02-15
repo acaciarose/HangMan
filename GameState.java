@@ -64,6 +64,7 @@ public class GameState {
 	boolean takeAndCheckGuessInput() {
 		String guess = recieveUserGuess();
 		if (guess.length() > 1) {
+
 			return checkWordGuess(guess);
 		}
 		if (guess.equals("?")) {
@@ -71,6 +72,7 @@ public class GameState {
 			return false;
 		} 	
 		else {
+
 			char letter = guess.charAt(0);
 			return checkLetterGuess(letter);
 		}
@@ -90,6 +92,9 @@ public class GameState {
 	
 	//Check a one-letter guess
 	boolean checkLetterGuess(char letter) {
+		
+		setGuessesTaken(getGuessesTaken() + 1); // One more guess
+		setGuessesLeft(getGuessesLeft() - 1);//Decrease chances left
 	
 		for(int i = 0; i < lettersNotGuessed.size(); ++i) { // Loop over the not got
 			//If the letter is in the "not yet guessed" list
@@ -97,20 +102,20 @@ public class GameState {
 				//remove it and add it to the got list
 				lettersNotGuessed.remove(i);
 				lettersGuessed.add(letter);
-				//Increase guess counter
-				setGuessesTaken(getGuessesTaken() + 1);
+				
+				
 				return true;
 			}
 		}
 
-		setGuessesTaken(getGuessesTaken() + 1); // One more guess
-		setGuessesLeft(getGuessesLeft() - 1);//Decrease chances left
 		return false;
 	
 	}
 
 	//If a whole word is typed in, check if it's correct
 	boolean checkWordGuess(String guess) {
+		setGuessesTaken(getGuessesTaken() + 1); // One more guess
+		setGuessesLeft(getGuessesLeft() - 1);//Decrease chances left
 					
 			if (guess.equals(getTargetWord())) {
 				lettersNotGuessed.clear();
