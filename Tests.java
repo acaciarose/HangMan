@@ -129,6 +129,22 @@ public class Tests {
 			assertFalse(testgamestate.isGameLost());	
 		}
 		
+		//////////////////////////////////////////////////
+		
+		@Test
+		public void correctPrintingOfWordTest() {
+			GameState testgamestate = new GameState("banana", 10, 6);
+			assertEquals(testgamestate.obscureWord(testgamestate.getTargetWord(), testgamestate.lettersGuessed), "------");	
+			testgamestate.checkLetterGuess('b');
+			testgamestate.checkLetterGuess('a');
+			assertEquals(testgamestate.obscureWord(testgamestate.getTargetWord(), testgamestate.lettersGuessed), "ba-a-a");	
+			testgamestate.checkLetterGuess('n');
+			assertEquals(testgamestate.obscureWord(testgamestate.getTargetWord(), testgamestate.lettersGuessed), "banana");	
+
+		
+		}
+		
+		
 		
 		
 

@@ -49,16 +49,36 @@ public class GameState {
 	}
 	
 	//Print word, obscuring letters not guessed yet
-	void showWord() {
-		for (int i = 0; i < getTargetWord().length(); ++i) {
-			if (lettersGuessed.contains(getTargetWord().charAt(i))) {
-				System.out.print(getTargetWord().charAt(i));
+	void obscureAndPrintWord() {
+		
+		String obscuredWord = obscureWord(getTargetWord(), lettersGuessed);
+		
+		System.out.println(obscuredWord);
+
+	}
+	
+	
+	//Take a word and 
+	String obscureWord(String word, ArrayList<Character> allowedLetters) {
+		
+		String obscuredWord = "";
+		
+		for (int i = 0; i < word.length(); ++i) {
+			if (allowedLetters.contains(word.charAt(i))) {
+				obscuredWord += word.charAt(i);
 			} else {
-				System.out.print("-");
+				obscuredWord +=  "-";
 			}
 		}
-		System.out.println("");
+		
+		return obscuredWord;
+	
 	}
+	
+	
+	
+	
+	
 	
 	// Prompt for a guess and check if it's correct
 	boolean takeAndCheckGuessInput() {
