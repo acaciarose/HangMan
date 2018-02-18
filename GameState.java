@@ -16,9 +16,9 @@ public class GameState {
 	//Hints left
 	private int hintsLeft;
 
-
 	//List of letters correctly guessed
 	ArrayList<Character> lettersGuessed;
+	
 	//List of letters not yet guessed
 	ArrayList<Character> lettersNotGuessed;
 	
@@ -42,10 +42,10 @@ public class GameState {
 		this.setGuessesTaken(0);
 
 		// Set chances/guesses to given number
-		setGuessesLeft(guesses);
+		this.setGuessesLeft(guesses);
 
 		// Set number of hints to given number
-		this.hintsLeft = hints;
+		this.setHintsLeft(hints);
 	}
 	
 	//Print word, obscuring letters not guessed yet
@@ -68,7 +68,7 @@ public class GameState {
 			return checkWordGuess(guess);
 		}
 		if (guess.equals("?")) {
-			hint();
+			showHint();
 			return false;
 		} 	
 		else {
@@ -125,28 +125,28 @@ public class GameState {
 	}
 	
 	//Determine if game won (no letters not guessed)
-	boolean won() {
-		if (lettersNotGuessed.size() == 0) return true; else return false;
+	boolean isGameWon() {
+		return (lettersNotGuessed.size() <= 0);
+			
 	}
 
 	//Determine if game lost (some letters not guessed, no chances left)
-	boolean lost() {
-		if (lettersNotGuessed.size() > 0 && getGuessesLeft() == 0) return true; else return false;
+	boolean isGameLost() {
+		return (lettersNotGuessed.size() > 0 && getGuessesLeft() <= 0);
 	}
 
 	//Show a hint (a random letter from the "not" list)
-	void hint() {
+	void showHint() {
 		if (getHintsLeft() <= 0) {
 			System.out.println("No more hints allowed");
 		}
-		
+
 		else {
-		
-		System.out.print("Try: ");
-		System.out.println(lettersNotGuessed.get((int)(Math.random()*lettersNotGuessed.size())));
-		setHintsLeft(getHintsLeft() -1);
+			System.out.print("Try: ");
+			System.out.println(lettersNotGuessed.get((int)(Math.random()*lettersNotGuessed.size())));
+			setHintsLeft(getHintsLeft() -1);
 		}
-		
+
 	}
 
 	public int getGuessesTaken() {

@@ -93,18 +93,18 @@ public class Tests {
 		@Test
 		public void correctHintsNumberAfterHintsTest() {
 			GameState testgamestate = new GameState("banana", 5, 6);
-			testgamestate.hint();
-			testgamestate.hint();
+			testgamestate.showHint();
+			testgamestate.showHint();
 			assertEquals(testgamestate.getHintsLeft(), 4);	
 		}
 		
 		@Test
 		public void zeroHintsLeftTest() {
 			GameState testgamestate = new GameState("banana", 5, 2);
-			testgamestate.hint();
-			testgamestate.hint();
-			testgamestate.hint();
-			testgamestate.hint();
+			testgamestate.showHint();
+			testgamestate.showHint();
+			testgamestate.showHint();
+			testgamestate.showHint();
 			assertEquals(testgamestate.getHintsLeft(), 0);	
 		}
 		
@@ -115,8 +115,8 @@ public class Tests {
 			GameState testgamestate = new GameState("banana", 2, 6);
 			testgamestate.checkLetterGuess('c');
 			testgamestate.checkLetterGuess('m');
-			assertFalse(testgamestate.won());	
-			assertTrue(testgamestate.lost());	
+			assertFalse(testgamestate.isGameWon());	
+			assertTrue(testgamestate.isGameLost());	
 		}
 		
 		@Test
@@ -125,8 +125,8 @@ public class Tests {
 			testgamestate.checkLetterGuess('b');
 			testgamestate.checkLetterGuess('a');
 			testgamestate.checkWordGuess("banana");
-			assertTrue(testgamestate.won());	
-			assertFalse(testgamestate.lost());	
+			assertTrue(testgamestate.isGameWon());	
+			assertFalse(testgamestate.isGameLost());	
 		}
 		
 		

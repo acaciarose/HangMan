@@ -30,7 +30,7 @@ public class HangMan {
 		}
 
 		// Main game loop: while game not won or lost, keep accepting guesses
-		while (!game.won() && !game.lost()) {
+		while (!game.isGameWon() && !game.isGameLost()) {
 			// Print word, obscuring letters not guessed so far
 			game.showWord();
 
@@ -46,7 +46,7 @@ public class HangMan {
 		}
 
 		// Print winning message if won
-		if (game.won()) {
+		if (game.isGameWon()) {
 			System.out.println("Well done!");
 			System.out.println("You took " + game.getGuessesTaken() + " guesses");
 		} else {
