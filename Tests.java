@@ -156,7 +156,15 @@ public class Tests {
 				
 		}
 		
-
+		@Test
+		public void commandLineArgsOrderExtractionTest() {
+			String[] testargs = {"--guesses", "5", "words.txt", "--hints", "6" };
+			CommandOpts userOptions = new CommandOpts(testargs);
+			assertEquals(userOptions.getMaxguesses(), 5);
+			assertEquals(userOptions.getMaxhints(), 6);
+			assertEquals(userOptions.wordsource, "words.txt");
+				
+		}
 		
 		@Test
 		public void commandLineArgsExtractionMissingValuesTest() {

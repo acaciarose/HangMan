@@ -24,13 +24,14 @@ public class CommandOpts {
 	// Extract guesses, hints and wordsources from command line args
 	void extractOptionsFromCommandLineArgs(String[] args) {		
 		for (int i = 0; i < args.length; ++i) {
+			System.out.println(args[i]);
 			if (args[i].equals("--guesses")) {
 				int parsedGuesses = parseGuessesInput(args[i+1]);
 				setGuesses(parsedGuesses);	
 				if (parsedGuesses != -1) {
 				i++;
 				}
-			} if (args[i].equals("--hints")) {
+			} else if (args[i].equals("--hints")) {
 				int parsedHints = parseHintsInput(args[i+1]);
 				setHints(parsedHints);
 				if (parsedHints != -1) {
@@ -39,7 +40,7 @@ public class CommandOpts {
 			} else
 				if (checkWordSourceFileIsValid(args[i])) {
 					wordsource = args[i];
-					i++;
+					
 				}
 		}
 		
