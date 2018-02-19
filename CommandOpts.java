@@ -24,7 +24,6 @@ public class CommandOpts {
 	// Extract guesses, hints and wordsources from command line args
 	void extractOptionsFromCommandLineArgs(String[] args) {		
 		for (int i = 0; i < args.length; ++i) {
-			System.out.println(args[i]);
 			if (args[i].equals("--guesses")) {
 				int parsedGuesses = parseGuessesInput(args[i+1]);
 				setGuesses(parsedGuesses);	
@@ -69,7 +68,6 @@ public class CommandOpts {
 	//Make sure the word source file given exists and is a file
 	boolean checkWordSourceFileIsValid(String wordsource) {
 		File f = new File(wordsource);
-		System.out.print(f.exists());
 		return (f.isFile());
 		
 	}
