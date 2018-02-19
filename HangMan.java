@@ -22,11 +22,11 @@ public class HangMan {
 			System.out.print("Pick a category:");
 
 			// Make new game based on given category/source
-			game = new GameState(wc.getRandomWordInCategory(sc.nextInt()), userOptions.maxguesses,
-					userOptions.maxhints);
+			game = new GameState(wc.getRandomWordInCategory(sc.nextInt()), userOptions.getMaxguesses(),
+					userOptions.getMaxhints());
 		} else {
-			game = new GameState(wc.getRandomWordFromSourceFile(userOptions.wordsource), userOptions.maxguesses,
-					userOptions.maxhints);
+			game = new GameState(wc.getRandomWordFromSourceFile(userOptions.wordsource), userOptions.getMaxguesses(),
+					userOptions.getMaxhints());
 		}
 
 		// Main game loop: while game not won or lost, keep accepting guesses

@@ -49,6 +49,8 @@ public class WordsChooser {
 			}
 			// Return random word from given words file
 			reader.close();
+			
+			
 			return userWordList.get((int) (Math.random() * userWordList.size()));
 		} catch (FileNotFoundException e) {
 			System.out.println("File error");

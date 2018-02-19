@@ -58,7 +58,7 @@ public class GameState {
 	}
 	
 	
-	//Take a word and 
+	//Take a word and return it with only the allowed letters shown
 	String obscureWord(String word, ArrayList<Character> allowedLetters) {
 		
 		String obscuredWord = "";
