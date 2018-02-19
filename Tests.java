@@ -144,7 +144,47 @@ public class Tests {
 		
 		}
 		
+		/////////////////////////////////////////////////////
 		
+		@Test
+		public void commandLineArgsExtractionTest() {
+			String[] testargs = {"--guesses", "5", "--hints", "6", "words.txt"};
+			CommandOpts userOptions = new CommandOpts(testargs);
+			assertEquals(userOptions.getMaxguesses(), 5);
+			assertEquals(userOptions.getMaxhints(), 6);
+			assertEquals(userOptions.wordsource, "words.txt");
+				
+		}
+		
+		@Test
+		public void commandLineArgsExtractionMissingValuesTest() {
+			String[] testargs = {"--guesses", "5", "--hints", "words.txt"};
+			CommandOpts userOptions = new CommandOpts(testargs);
+			assertEquals(userOptions.getMaxguesses(), 5);
+			assertEquals(userOptions.getMaxhints(), 2); //default hints number
+			assertEquals(userOptions.wordsource, "words.txt");
+				
+		}
+		
+		@Test
+		public void commandLineArgsExtractionExtraValuesTest() {
+			String[] testargs = {"--guesses", "5", "9", "--hints", "6", "7", "words.txt"};
+			CommandOpts userOptions = new CommandOpts(testargs);
+			assertEquals(userOptions.getMaxguesses(), 5);
+			assertEquals(userOptions.getMaxhints(), 6); //default hints number
+			assertEquals(userOptions.wordsource, "words.txt");
+				
+		}
+		
+		@Test
+		public void commandLineArgsExtractionNoValuesTest() {
+			String[] testargs = {};
+			CommandOpts userOptions = new CommandOpts(testargs);
+			assertEquals(userOptions.getMaxguesses(), 10); //default guesses number
+			assertEquals(userOptions.getMaxhints(), 2); //default hints number
+			assertEquals(userOptions.wordsource, "");
+				
+		}
 		
 		
 
