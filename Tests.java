@@ -156,6 +156,8 @@ public class Tests {
 				
 		}
 		
+
+		
 		@Test
 		public void commandLineArgsExtractionMissingValuesTest() {
 			String[] testargs = {"--guesses", "5", "--hints", "words.txt"};

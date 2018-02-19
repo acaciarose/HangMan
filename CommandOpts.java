@@ -1,3 +1,5 @@
+import java.io.File;
+
 //Read in given command line options (no.guesses/no.hints)
 public class CommandOpts {
 	static final int DEFAULT_MAX_GUESSES = 10;
@@ -23,13 +25,90 @@ public class CommandOpts {
 	void extractOptionsFromCommandLineArgs(String[] args) {		
 		for (int i = 0; i < args.length; ++i) {
 			if (args[i].equals("--guesses")) {
-				setMaxguesses(Integer.parseInt(args[i + 1]));
+				int parsedGuesses = parseGuessesInput(args[i+1]);
+				setGuesses(parsedGuesses);	
+				if (parsedGuesses != -1) {
 				i++;
-			} else if (args[i].equals("--hints")) {
-				setMaxhints(Integer.parseInt(args[i + 1]));
+				}
+			} if (args[i].equals("--hints")) {
+				int parsedHints = parseHintsInput(args[i+1]);
+				setHints(parsedHints);
+				if (parsedHints != -1) {
 				i++;
+				}
 			} else
-				wordsource = args[i];
+				if (checkWordSourceFileIsValid(args[i])) {
+					wordsource = args[i];
+					i++;
+				}
+		}
+		
+	}
+	
+	//Make sure hints input is sensible.
+	int parseHintsInput(String hint) {
+		try {
+			int parsedHint = Integer.parseInt(hint);
+			if (parsedHint >= 0) {
+				return parsedHint;
+			}
+			else {
+				return -1;
+			}
+			
+		}
+		catch (NumberFormatException e) {
+			return -1;
+		}
+		
+
+	
+	}
+	
+	//Make sure the word source file given exists and is a file
+	boolean checkWordSourceFileIsValid(String wordsource) {
+		File f = new File(wordsource);
+		System.out.print(f.exists());
+		return (f.isFile());
+		
+	}
+	
+	//Make sure guesses input is sensible. 
+	int parseGuessesInput(String guess) {
+		try {
+			int parsedGuess = Integer.parseInt(guess);
+			if (parsedGuess >= 0) {
+				return parsedGuess;
+			}
+			else {
+				return -1;
+			}
+			
+		}
+		catch (NumberFormatException e) {
+			return -1;
+		}
+	
+	}
+	
+	void setGuesses(int guesses) {
+		if (guesses == -1) {
+			System.out.println("Not a valid guess! Guesses value set to default...");
+		}
+		
+		else {
+			setMaxguesses(guesses);
+		}
+		
+	}
+	
+	void setHints(int hints) {
+		if (hints == -1) {
+			System.out.println("Not a valid hint! Hint value set to default...");
+		}
+		
+		else {
+			setMaxhints(hints);
 		}
 		
 	}
