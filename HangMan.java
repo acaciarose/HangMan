@@ -23,12 +23,13 @@ public class HangMan {
 			
 			//TODO : write separate category reader here
 
-			// Make new game based on given category/source
+			// Make new game based on given category
 			game = game.initialiseGameState(wc.getRandomWordInCategory(sc.nextInt()), userOptions.getMaxguesses(),
 					userOptions.getMaxhints());
 		} 
 		
 		else {
+			//Make new game based on given word source file
 			game = game.initialiseGameState(wc.getRandomWordFromSourceFile(userOptions.wordsource), userOptions.getMaxguesses(),
 					userOptions.getMaxhints());
 		}
@@ -37,6 +38,7 @@ public class HangMan {
 		if (game.equals(null)) {
 			System.out.println("Incorrect parameters supplied. Please make sure:");
 			System.out.println("Target word category must be 1, 2, or 3.");
+			System.out.println("Target source file is non-empty, contains only words, and is a text file");
 			System.out.println("Number of guesses is larger than zero and smaller than 1000");
 			System.out.println("Number of hints is larger than or equal to zero and smaller than 1000");
 			
