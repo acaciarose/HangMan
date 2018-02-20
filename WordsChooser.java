@@ -37,9 +37,18 @@ public class WordsChooser {
 
 	// return a random word, using a given file of words as a source
 	public String getRandomWordFromSourceFile(String wordsource) {
+			ArrayList<String> userWordList = readWordsFromSourceFile(wordsource);
+					
+			return userWordList.get((int) (Math.random() * userWordList.size()));
+
+	}
+	
+	
+	
+	public ArrayList<String> readWordsFromSourceFile(String wordsource) {
 		String currentLine;
 		ArrayList<String> userWordList = new ArrayList<String>();
-
+		
 		try {
 			// Read words file
 			FileReader wordSourceFile = new FileReader(wordsource);
@@ -51,13 +60,15 @@ public class WordsChooser {
 			reader.close();
 			
 			
-			return userWordList.get((int) (Math.random() * userWordList.size()));
 		} catch (FileNotFoundException e) {
 			System.out.println("File error");
-			return "";
 		} catch (IOException e) {
 			System.out.println("IO error");
-			return "";
 		}
+		
+		
+		return userWordList;
+		
+		
 	}
 }
