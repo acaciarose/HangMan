@@ -260,6 +260,26 @@ public class Tests {
 
 	}
 	
+	@Test
+	public void wordSourceStrangeFormatTest() {
+		WordsChooser wc = new WordsChooser();
+
+		ArrayList test = new ArrayList<String>(Arrays.asList("cat", "dog", "fish"));
+
+		assertEquals(wc.readWordsFromSourceFile("format.txt"), test); //default guesses number
+
+	}
+	
+	@Test
+	public void wordSourceOneWordTest() {
+		WordsChooser wc = new WordsChooser();
+
+		ArrayList test = new ArrayList<String>(Arrays.asList("word"));
+
+		assertEquals(wc.readWordsFromSourceFile("oneword.txt"), test); //default guesses number
+
+	}
+	
 	
 
 

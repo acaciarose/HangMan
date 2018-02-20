@@ -60,20 +60,36 @@ public class WordsChooser {
 			BufferedReader reader = new BufferedReader(wordSourceFile);
 			while ((currentLine = reader.readLine()) != null) {
 				System.out.println(currentLine);
+				//Invalid input (alphabet letters only) recieved, return null
+				if (checkForNonAlphabeticCharacters(currentLine)) {
+					return null;
+				}
+				
 				userWordList.add(currentLine);
 			}
 			
 			reader.close();
 			
+			//Disallow empty input files
+			if (userWordList.isEmpty()) {
+				return null;
+			}
+			return userWordList;
+			
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("File error");
+			return null;
 		} catch (IOException e) {
 			System.out.println("IO error");
+			return null;
 		}
+			
 		
-		
-		return userWordList;
+	}
+	
+	private boolean checkForNonAlphabeticCharacters(String line) {
+		return line.matches("^.*[^a-zA-Z].*$");
 		
 		
 	}
