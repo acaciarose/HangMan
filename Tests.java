@@ -61,18 +61,7 @@ public class Tests {
 		assertEquals(testgamestate,null);
 	}
 	
-	///////////////////////////////////////////////////////////
-	//Game State Tests - game state creation with various parameters.
-	///////////////////////////////////////////////////////////
 
-	@Test
-	public void optionsTest() {
-		String[] args = { "--guesses", "2", "--hints", "4", "words.txt" };
-		CommandOpts opts = new CommandOpts(args);
-		assertEquals(opts.getMaxguesses(), 2);
-		assertEquals(opts.getMaxhints(), 4);
-		assertEquals(opts.wordsource, "words.txt");
-	}
 
 	///////////////////////////////////////////////////////////
 	//Guessing tests - guessing words and letters and checking correct guess/hint numbers 
