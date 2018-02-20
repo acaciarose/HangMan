@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 //Contains all available words for guessing, and methods for returning random words
 
@@ -35,16 +36,20 @@ public class WordsChooser {
 
 	}
 
-	// return a random word, using a given file of words as a source
+	// Return a random word, using a given file of words as a source
 	public String getRandomWordFromSourceFile(String wordsource) {
+		
+			//Read words from source file into list
 			ArrayList<String> userWordList = readWordsFromSourceFile(wordsource);
-					
-			return userWordList.get((int) (Math.random() * userWordList.size()));
+			
+			//Return random item from word list
+			int randomIndex = new Random().nextInt(userWordList.size());				
+			return userWordList.get(randomIndex);
 
 	}
 	
 	
-	
+	//Read in the given source file and extract its words.
 	public ArrayList<String> readWordsFromSourceFile(String wordsource) {
 		String currentLine;
 		ArrayList<String> userWordList = new ArrayList<String>();
@@ -56,7 +61,7 @@ public class WordsChooser {
 			while ((currentLine = reader.readLine()) != null) {
 				userWordList.add(currentLine);
 			}
-			// Return random word from given words file
+			
 			reader.close();
 			
 			
