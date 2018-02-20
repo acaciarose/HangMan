@@ -64,8 +64,10 @@ public class WordsChooser {
 				if (checkForNonAlphabeticCharacters(currentLine)) {
 					return null;
 				}
-				
-				userWordList.add(currentLine);
+
+				if (checkLineNotEmpty(currentLine)) {
+					userWordList.add(currentLine);
+				}
 			}
 			
 			reader.close();
@@ -89,8 +91,11 @@ public class WordsChooser {
 	}
 	
 	private boolean checkForNonAlphabeticCharacters(String line) {
-		return line.matches("^.*[^a-zA-Z].*$");
-		
+		return line.matches("^.*[^a-zA-Z].*$");	
+	}
+	
+	private boolean checkLineNotEmpty(String line) {
+		return !(line.equals(""));
 		
 	}
 }
