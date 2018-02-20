@@ -59,7 +59,6 @@ public class WordsChooser {
 			FileReader wordSourceFile = new FileReader(wordsource);
 			BufferedReader reader = new BufferedReader(wordSourceFile);
 			while ((currentLine = reader.readLine()) != null) {
-				System.out.println(currentLine);
 				//Invalid input (alphabet letters only) recieved, return null
 				if (checkForNonAlphabeticCharacters(currentLine)) {
 					return null;

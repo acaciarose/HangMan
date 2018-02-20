@@ -25,26 +25,40 @@ public class Tests {
 		assertEquals(testgamestate.lettersGuessed.size(), 0);
 	}
 
-	//		@Test
-	//		public void zeroGuessesAndHintsGameStateTest() {
-	//
-	//			GameState testgamestate = new GameState("banana", 0, 0);
-	//			assertEquals(testgamestate,null);
-	//
-	//		}
-	//		@Test
-	//		public void tooLargeGuessesAndHintsGameStateTest() {
-	//
-	//			GameState testgamestate = new GameState("banana", 10000000, 100000000);
-	//			assertEquals(testgamestate,null);
-	//
-	//		}
-	//		@Test
-	//		public void negativeIntegerGuessesAndHintsGameStateTest() {
-	//
-	//			GameState testgamestate = new GameState("banana", -100, -20);
-	//			assertEquals(testgamestate,null);
-	//		}
+	@Test
+	public void zeroGuessesAndHintsGameStateTest() {
+
+		GameState testgamestate = new GameState("banana", 0, 0);
+		assertEquals(testgamestate,null);
+
+	}
+	@Test
+	public void tooLargeGuessesAndHintsGameStateTest() {
+
+		GameState testgamestate = new GameState("banana", 10000000, 100000000);
+		assertEquals(testgamestate,null);
+
+	}
+	@Test
+	public void negativeIntegerGuessesAndHintsGameStateTest() {
+
+		GameState testgamestate = new GameState("banana", -100, -20);
+		assertEquals(testgamestate,null);
+	}
+	
+	@Test
+	public void blankWordGameStateTest() {
+
+		GameState testgamestate = new GameState("", 5, 5);
+		assertEquals(testgamestate,null);
+	}
+	
+	@Test
+	public void nonAlphaWordGameStateTest() {
+
+		GameState testgamestate = new GameState("6", 5, 5);
+		assertEquals(testgamestate,null);
+	}
 	
 	///////////////////////////////////////////////////////////
 	//Game State Tests - game state creation with various parameters.
