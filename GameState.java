@@ -26,9 +26,15 @@ public class GameState {
 	public Scanner sc = new Scanner(System.in).useDelimiter("\n");
 	
 
-	// Make new game state
-	public GameState(String targetWord, int guesses, int hints) {
+		
+	public GameState initialiseGameState(String targetWord, int guesses, int hints) {
+		
 		this.setTargetWord(targetWord);
+		
+		if (checkHints(hints) && checkGuesses(guesses) && checkTargetWord(targetWord)) {
+		
+		
+		
 		lettersNotGuessed = new ArrayList<Character>();
 		lettersGuessed = new ArrayList<Character>();
 
@@ -46,8 +52,41 @@ public class GameState {
 
 		// Set number of hints to given number
 		this.setHintsLeft(hints);
+		
+		return this;
+		
+		}
+		
+		return null;
+		
 	}
-	
+
+	//Make sure target word is not blank, an actual word, and a sensible length
+	private boolean checkTargetWord(String word) {
+		if (word.equals("")) {
+			return false;
+		}
+		
+		if (word.matches("^.*[^a-zA-Z].*$")	) {
+			return false;
+		}
+		
+		if (word.length() > 1000) {
+			return false;
+		}
+			
+		return true;
+		
+	}
+
+	private boolean checkGuesses(int guesses) {
+		return (guesses > 0 && guesses < 1000);
+	}
+
+	private boolean checkHints(int hints) {
+		return (hints >= 0 && hints < 1000);
+	}
+
 	//Print word, obscuring letters not guessed yet
 	void obscureAndPrintWord() {
 		

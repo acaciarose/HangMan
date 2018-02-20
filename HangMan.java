@@ -6,7 +6,7 @@ public class HangMan {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		GameState game;
+		GameState game = new GameState();
 		CommandOpts userOptions;
 		WordsChooser wc = new WordsChooser();
 
@@ -20,14 +20,30 @@ public class HangMan {
 			System.out.println("  3. Cities");
 
 			System.out.print("Pick a category:");
+			
+			//TODO : write separate category reader here
 
 			// Make new game based on given category/source
-			game = new GameState(wc.getRandomWordInCategory(sc.nextInt()), userOptions.getMaxguesses(),
+			game = game.initialiseGameState(wc.getRandomWordInCategory(sc.nextInt()), userOptions.getMaxguesses(),
 					userOptions.getMaxhints());
-		} else {
-			game = new GameState(wc.getRandomWordFromSourceFile(userOptions.wordsource), userOptions.getMaxguesses(),
+		} 
+		
+		else {
+			game = game.initialiseGameState(wc.getRandomWordFromSourceFile(userOptions.wordsource), userOptions.getMaxguesses(),
 					userOptions.getMaxhints());
 		}
+		
+		
+		if (game.equals(null)) {
+			System.out.println("Incorrect parameters supplied. Please make sure:");
+			System.out.println("Target word category must be 1, 2, or 3.");
+			System.out.println("Number of guesses is larger than zero and smaller than 1000");
+			System.out.println("Number of hints is larger than or equal to zero and smaller than 1000");
+			
+		}
+		else {
+		
+		
 
 		// Main game loop: while game not won or lost, keep accepting guesses
 		while (!game.isGameWon() && !game.isGameLost()) {
@@ -52,6 +68,7 @@ public class HangMan {
 		} else {
 			System.out.println("You lost! The word was " + game.getTargetWord());
 		}
+	}
 	}
 
 }

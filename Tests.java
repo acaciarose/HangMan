@@ -16,7 +16,8 @@ public class Tests {
 	
 	@Test
 	public void gameStateTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate.initialiseGameState("banana", 5, 6);
 		assertEquals(testgamestate.getGuessesLeft(), 5);
 		assertEquals(testgamestate.getHintsLeft(), 6);
 		assertEquals(testgamestate.getGuessesTaken(), 0);
@@ -27,36 +28,36 @@ public class Tests {
 
 	@Test
 	public void zeroGuessesAndHintsGameStateTest() {
-
-		GameState testgamestate = new GameState("banana", 0, 0);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 0, 0);
 		assertEquals(testgamestate,null);
 
 	}
 	@Test
 	public void tooLargeGuessesAndHintsGameStateTest() {
-
-		GameState testgamestate = new GameState("banana", 10000000, 100000000);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 10000000, 100000000);
 		assertEquals(testgamestate,null);
 
 	}
 	@Test
 	public void negativeIntegerGuessesAndHintsGameStateTest() {
-
-		GameState testgamestate = new GameState("banana", -100, -20);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", -100, -20);
 		assertEquals(testgamestate,null);
 	}
 	
 	@Test
 	public void blankWordGameStateTest() {
-
-		GameState testgamestate = new GameState("", 5, 5);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("", 5, 5);
 		assertEquals(testgamestate,null);
 	}
 	
 	@Test
 	public void nonAlphaWordGameStateTest() {
-
-		GameState testgamestate = new GameState("6", 5, 5);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("6", 5, 5);
 		assertEquals(testgamestate,null);
 	}
 	
@@ -78,19 +79,22 @@ public class Tests {
 	///////////////////////////////////////////////////////////
 	@Test
 	public void guessLettersTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 6);
 		assertFalse(testgamestate.checkLetterGuess('c'));
 		assertTrue(testgamestate.checkLetterGuess('b'));		
 	}
 	@Test
 	public void guessWordsTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 6);
 		assertFalse(testgamestate.checkWordGuess("cat"));
 		assertTrue(testgamestate.checkWordGuess("banana"));		
 	}
 	@Test
 	public void correctHintsNumberAfterGuessTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 6);
 		testgamestate.checkLetterGuess('c');
 		testgamestate.checkLetterGuess('e');	
 		assertEquals(testgamestate.getHintsLeft(), 6);
@@ -98,7 +102,8 @@ public class Tests {
 	}
 	@Test
 	public void correctGuessesNumberAfterLetterGuessTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 6);
 		testgamestate.checkLetterGuess('c');
 		testgamestate.checkLetterGuess('e');	
 		assertEquals(testgamestate.getGuessesTaken(), 2);
@@ -107,7 +112,8 @@ public class Tests {
 
 	@Test
 	public void correctGuessesNumberAfterWordGuessTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 6);
 		testgamestate.checkWordGuess("cat");
 		testgamestate.checkWordGuess("apple");	
 		assertEquals(testgamestate.getGuessesTaken(), 2);
@@ -120,7 +126,8 @@ public class Tests {
 
 	@Test
 	public void correctHintsNumberAfterHintsTest() {
-		GameState testgamestate = new GameState("banana", 5, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 6);
 		testgamestate.showHint();
 		testgamestate.showHint();
 		assertEquals(testgamestate.getHintsLeft(), 4);	
@@ -128,7 +135,8 @@ public class Tests {
 
 	@Test
 	public void zeroHintsLeftTest() {
-		GameState testgamestate = new GameState("banana", 5, 2);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 5, 2);
 		testgamestate.showHint();
 		testgamestate.showHint();
 		testgamestate.showHint();
@@ -142,7 +150,8 @@ public class Tests {
 
 	@Test
 	public void gameLostTest() {
-		GameState testgamestate = new GameState("banana", 2, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 2, 6);
 		testgamestate.checkLetterGuess('c');
 		testgamestate.checkLetterGuess('m');
 		assertFalse(testgamestate.isGameWon());	
@@ -151,7 +160,8 @@ public class Tests {
 
 	@Test
 	public void gameWonTest() {
-		GameState testgamestate = new GameState("banana", 10, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 10, 6);
 		testgamestate.checkLetterGuess('b');
 		testgamestate.checkLetterGuess('a');
 		testgamestate.checkWordGuess("banana");
@@ -165,7 +175,8 @@ public class Tests {
 
 	@Test
 	public void correctPrintingOfWordTest() {
-		GameState testgamestate = new GameState("banana", 10, 6);
+		GameState testgamestate = new GameState();
+		testgamestate = testgamestate.initialiseGameState("banana", 10, 6);
 		assertEquals(testgamestate.obscureWord(testgamestate.getTargetWord(), testgamestate.lettersGuessed), "------");	
 		testgamestate.checkLetterGuess('b');
 		testgamestate.checkLetterGuess('a');

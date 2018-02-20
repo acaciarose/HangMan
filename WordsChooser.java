@@ -30,8 +30,10 @@ public class WordsChooser {
 			return scottishAreasWordList[(int) (Math.random() * 9)];
 		case (2):
 			return europeanCountriesWordList[(int) (Math.random() * 15)];
-		default:
+		case(3):
 			return scottishTownsWordList[(int) (Math.random() * 10)];
+		default:
+			return "";
 		}
 
 	}
@@ -43,8 +45,16 @@ public class WordsChooser {
 			ArrayList<String> userWordList = readWordsFromSourceFile(wordsource);
 			
 			//Return random item from word list
-			int randomIndex = new Random().nextInt(userWordList.size());				
-			return userWordList.get(randomIndex);
+			int randomIndex = new Random().nextInt(userWordList.size());
+			
+			
+			if (userWordList.equals(null)) {
+				return null;
+			}
+			
+			else {
+				return userWordList.get(randomIndex);
+			}		
 
 	}
 	
@@ -89,11 +99,11 @@ public class WordsChooser {
 		
 	}
 	
-	private boolean checkForNonAlphabeticCharacters(String line) {
+	public boolean checkForNonAlphabeticCharacters(String line) {
 		return line.matches("^.*[^a-zA-Z].*$");	
 	}
 	
-	private boolean checkLineNotEmpty(String line) {
+	public boolean checkLineNotEmpty(String line) {
 		return !(line.equals(""));
 		
 	}
