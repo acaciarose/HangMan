@@ -1,6 +1,9 @@
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import org.junit.*;
@@ -213,6 +216,51 @@ public class Tests {
 
 	}
 
+	///////////////////////////////////////////////////////////
+	//Word Source Tests - checking correct reading of word source files
+	///////////////////////////////////////////////////////////
+	@Test
+	public void wordSourceDuplicateTest() {
+		WordsChooser wc = new WordsChooser();
+		ArrayList test = new ArrayList<String>(Arrays.asList("word", "word", "word", "word"));
+
+		assertEquals(wc.readWordsFromSourceFile("words.txt"), test); //default guesses number
+
+	}
+	
+	@Test
+	public void wordSourceImageFileTest() {
+		WordsChooser wc = new WordsChooser();
+
+		assertNull(wc.readWordsFromSourceFile("cursor.png")); //default guesses number
+
+	}
+	
+	@Test
+	public void wordSourceBlankTest() {
+		WordsChooser wc = new WordsChooser();
+
+		assertNull(wc.readWordsFromSourceFile("blank.txt")); //default guesses number
+
+	}
+	
+	@Test
+	public void wordSourceNonAlphabeticTest() {
+		WordsChooser wc = new WordsChooser();
+
+		assertNull(wc.readWordsFromSourceFile("nonalphabetic.txt")); //default guesses number
+
+	}
+	
+	@Test
+	public void wordSourceCorruptedTextTest() {
+		WordsChooser wc = new WordsChooser();
+
+		assertNull(wc.readWordsFromSourceFile("symbols.txt")); //default guesses number
+
+	}
+	
+	
 
 
 
