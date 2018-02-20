@@ -27,11 +27,11 @@ public class WordsChooser {
 	public String getRandomWordInCategory(int category) {
 		switch (category) {
 		case (1):
-			return scottishAreasWordList[(int) (Math.random() * 9)];
+			return scottishAreasWordList[new Random().nextInt(scottishAreasWordList.length)];
 		case (2):
-			return europeanCountriesWordList[(int) (Math.random() * 15)];
+			return europeanCountriesWordList[new Random().nextInt(europeanCountriesWordList.length)];
 		case(3):
-			return scottishTownsWordList[(int) (Math.random() * 10)];
+			return scottishTownsWordList[new Random().nextInt(scottishTownsWordList.length)];
 		default:
 			return "";
 		}
