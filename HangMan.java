@@ -1,6 +1,7 @@
 
 import java.util.Scanner;
 
+
 //Main game: print categories, perform game loop, print win/loss messages
 public class HangMan {
 
@@ -21,10 +22,11 @@ public class HangMan {
 
 			System.out.print("Pick a category:");
 			
-			//TODO : write separate category reader here
+			
+			int category = sc.nextInt();
 
 			// Make new game based on given category
-			game = game.initialiseGameState(wc.getRandomWordInCategory(sc.nextInt()), userOptions.getMaxguesses(),
+			game = game.initialiseGameState(wc.getRandomWordInCategory(category), userOptions.getMaxguesses(),
 					userOptions.getMaxhints());
 		} 
 		
@@ -71,6 +73,9 @@ public class HangMan {
 			System.out.println("You lost! The word was " + game.getTargetWord());
 		}
 	}
+		
+
 	}
+	
 
 }

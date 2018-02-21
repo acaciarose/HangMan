@@ -5,16 +5,9 @@ import java.util.Random;
 
 //Contains all available words for guessing, and methods for returning random words
 
-enum WordType {
-	SCOTTISHAREAS, EUCOUNTRIES, SCOTTISHTOWNS
-};
 
 public class WordsChooser {
-
-	public WordsChooser() {
-
-	}
-
+	
 	private final String[] scottishAreasWordList = { "Argyll and Bute", "Caithness", "Kingdom of Fife", "East Lothian",
 			"Highland", "Dumfries and Galloway", "Renfrewshire", "Scottish Borders", "Perth and Kinross" };
 	private final String[] europeanCountriesWordList = { "Scotland", "England", "Wales", "Northern Ireland", "Ireland",
@@ -27,11 +20,11 @@ public class WordsChooser {
 	public String getRandomWordInCategory(int category) {
 		switch (category) {
 		case (1):
-			return scottishAreasWordList[new Random().nextInt(scottishAreasWordList.length)];
+			return getScottishAreasWordList()[new Random().nextInt(getScottishAreasWordList().length)];
 		case (2):
-			return europeanCountriesWordList[new Random().nextInt(europeanCountriesWordList.length)];
+			return getEuropeanCountriesWordList()[new Random().nextInt(getEuropeanCountriesWordList().length)];
 		case(3):
-			return scottishTownsWordList[new Random().nextInt(scottishTownsWordList.length)];
+			return getScottishTownsWordList()[new Random().nextInt(getScottishTownsWordList().length)];
 		default:
 			return "";
 		}
@@ -71,6 +64,7 @@ public class WordsChooser {
 			while ((currentLine = reader.readLine()) != null) {
 				//Invalid input (alphabet letters only) recieved, return null
 				if (checkForNonAlphabeticCharacters(currentLine)) {
+					reader.close();
 					return null;
 				}
 
@@ -107,4 +101,26 @@ public class WordsChooser {
 		return !(line.equals(""));
 		
 	}
+
+	/**
+	 * @return the scottishAreasWordList
+	 */
+	public String[] getScottishAreasWordList() {
+		return scottishAreasWordList;
+	}
+
+	/**
+	 * @return the scottishTownsWordList
+	 */
+	public String[] getScottishTownsWordList() {
+		return scottishTownsWordList;
+	}
+
+	/**
+	 * @return the europeanCountriesWordList
+	 */
+	public String[] getEuropeanCountriesWordList() {
+		return europeanCountriesWordList;
+	}
 }
+

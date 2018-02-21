@@ -294,10 +294,58 @@ public class Tests {
 
 	}
 	
+
+	///////////////////////////////////////////////////////////
+	//Word Choosing Tests - checking correct choice of words from word lists/categories
+	///////////////////////////////////////////////////////////
+
+	@Test
+	public void wordChooseScottishAreasTest() {
+		WordsChooser wc = new WordsChooser();
+		String chosen = wc.getRandomWordInCategory(1);
+
+		assertTrue(Arrays.asList(wc.getScottishAreasWordList()).contains(chosen) ); 
+
+	}
+	
+	@Test
+	public void wordChooseEuropeanCountriesTest() {
+		WordsChooser wc = new WordsChooser();
+		String chosen = wc.getRandomWordInCategory(2);
+
+		assertTrue(Arrays.asList(wc.getEuropeanCountriesWordList()).contains(chosen) ); 
+
+	}
+	
+	@Test
+	public void wordChooseScottishTownsWordListTest() {
+		WordsChooser wc = new WordsChooser();
+		String chosen = wc.getRandomWordInCategory(3);
+
+		assertTrue(Arrays.asList(wc.getScottishTownsWordList()).contains(chosen) ); 
+
+	}
+	
+	@Test
+	public void wordChooseIncorrectOptionWordListTest() {
+		WordsChooser wc = new WordsChooser();
+		String chosen = wc.getRandomWordInCategory(10);
+
+		assertEquals(chosen, ""); 
+
+	}
+	
+	@Test
+	public void wordChooseSourceWordListTest() {
+		WordsChooser wc = new WordsChooser();
+		ArrayList test = new ArrayList<String>(Arrays.asList("word", "word", "word", "word"));
+
+		assertTrue(test.contains(wc.getRandomWordFromSourceFile("words.txt"))); //default guesses number
+
+	}
 	
 
 
-
 }
-
+	
 
