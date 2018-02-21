@@ -1,17 +1,17 @@
-import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 // Main game: print categories, perform game loop, print win/loss messages
 
 public class HangMan {
 
   public static void main(String[] args) {
-    
+
     GameState game = new GameState();
-    CommandOpts userOptions;
+    CommandLineOptions userOptions;
     WordsChooser wc = new WordsChooser();
 
-    userOptions = new CommandOpts(args);
+    userOptions = new CommandLineOptions(args);
 
     // If no command line arguments (no word source file specified)
     if (userOptions.wordsource == "") {
@@ -26,13 +26,8 @@ public class HangMan {
 
       String word = wc.getRandomWordInCategory(category);
 
-
       // Make new game based on given category
-      game =
-          game.initialiseGameState(
-              word,
-              userOptions.getMaxguesses(),
-              userOptions.getMaxhints());
+      game = game.initialiseGameState(word, userOptions.getMaxguesses(), userOptions.getMaxhints());
     } else {
       // Make new game based on given word source file
       game =
@@ -92,9 +87,7 @@ public class HangMan {
       int category = sc.nextInt();
       sc.nextLine(); // Consumes "\n"
       return category;
-    }
-
-    catch (InputMismatchException e) {
+    } catch (InputMismatchException e) {
       return -1;
     }
   }

@@ -1,7 +1,7 @@
 import java.io.File;
 
 // Read in given command line options (no.guesses/no.hints)
-public class CommandOpts {
+public class CommandLineOptions {
   static final int DEFAULT_MAX_GUESSES = 10;
   static final int DEFAULT_MAX_HINTS = 2;
 
@@ -10,7 +10,7 @@ public class CommandOpts {
 
   String wordsource;
 
-  CommandOpts(String[] args) {
+  CommandLineOptions(String[] args) {
     // Default values
     setMaxguesses(DEFAULT_MAX_GUESSES);
     setMaxhints(DEFAULT_MAX_HINTS);
