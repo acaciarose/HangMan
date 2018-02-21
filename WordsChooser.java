@@ -37,15 +37,13 @@ public class WordsChooser {
 			//Read words from source file into list
 			ArrayList<String> userWordList = readWordsFromSourceFile(wordsource);
 			
-			//Return random item from word list
-			int randomIndex = new Random().nextInt(userWordList.size());
-			
-			
-			if (userWordList.equals(null)) {
+			if (userWordList == null) {
 				return null;
 			}
-			
+							
 			else {
+				//Return random item from word list
+				int randomIndex = new Random().nextInt(userWordList.size());
 				return userWordList.get(randomIndex);
 			}		
 

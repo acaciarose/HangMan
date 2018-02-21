@@ -344,6 +344,14 @@ public class Tests {
 
 	}
 	
+	@Test
+	public void wordChooseInvalidSourceWordListTest() {
+		WordsChooser wc = new WordsChooser();
+
+		assertNull(wc.getRandomWordFromSourceFile("symbols.txt")); //default guesses number
+
+	}
+	
 
 
 }
