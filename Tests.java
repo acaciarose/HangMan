@@ -30,35 +30,35 @@ public class Tests {
 	public void zeroGuessesAndHintsGameStateTest() {
 		GameState testgamestate = new GameState();
 		testgamestate = testgamestate.initialiseGameState("banana", 0, 0);
-		assertEquals(testgamestate,null);
+		assertNull(testgamestate);
 
 	}
 	@Test
 	public void tooLargeGuessesAndHintsGameStateTest() {
 		GameState testgamestate = new GameState();
 		testgamestate = testgamestate.initialiseGameState("banana", 10000000, 100000000);
-		assertEquals(testgamestate,null);
+		assertNull(testgamestate);
 
 	}
 	@Test
 	public void negativeIntegerGuessesAndHintsGameStateTest() {
 		GameState testgamestate = new GameState();
 		testgamestate = testgamestate.initialiseGameState("banana", -100, -20);
-		assertEquals(testgamestate,null);
+		assertNull(testgamestate);
 	}
 	
 	@Test
 	public void blankWordGameStateTest() {
 		GameState testgamestate = new GameState();
 		testgamestate = testgamestate.initialiseGameState("", 5, 5);
-		assertEquals(testgamestate,null);
+		assertNull(testgamestate);
 	}
 	
 	@Test
 	public void nonAlphaWordGameStateTest() {
 		GameState testgamestate = new GameState();
 		testgamestate = testgamestate.initialiseGameState("6", 5, 5);
-		assertEquals(testgamestate,null);
+		assertNull(testgamestate);
 	}
 	
 
