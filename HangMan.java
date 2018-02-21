@@ -1,11 +1,12 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 // Main game: print categories, perform game loop, print win/loss messages
 
 public class HangMan {
 
   public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+    
     GameState game = new GameState();
     CommandOpts userOptions;
     WordsChooser wc = new WordsChooser();
@@ -21,12 +22,15 @@ public class HangMan {
 
       System.out.print("Pick a category:");
 
-      int category = sc.nextInt();
+      int category = getCategoryInput();
+
+      String word = wc.getRandomWordInCategory(category);
+
 
       // Make new game based on given category
       game =
           game.initialiseGameState(
-              wc.getRandomWordInCategory(category),
+              word,
               userOptions.getMaxguesses(),
               userOptions.getMaxhints());
     } else {
@@ -38,7 +42,7 @@ public class HangMan {
               userOptions.getMaxhints());
     }
 
-    if (game.equals(null)) {
+    if (game == null) {
       System.out.println("Incorrect parameters supplied. Please make sure:");
       System.out.println("Target word category must be 1, 2, or 3.");
       System.out.println(
@@ -59,6 +63,7 @@ public class HangMan {
       game.obscureAndPrintWord();
 
       System.out.println("Guesses remaining: " + game.getGuessesLeft());
+      System.out.println("Hints remaining: " + game.getHintsLeft());
 
       // Read in a guess and decide if it was correct
       boolean wasGuessCorrect = game.takeAndCheckGuessInput();
@@ -67,7 +72,7 @@ public class HangMan {
         System.out.println("Good guess!");
       }
       if (!wasGuessCorrect) {
-        System.out.println("Wrong guess!");
+        System.out.println("Try again!");
       }
     }
 
@@ -77,6 +82,20 @@ public class HangMan {
       System.out.println("You took " + game.getGuessesTaken() + " guesses");
     } else {
       System.out.println("You lost! The word was " + game.getTargetWord());
+    }
+  }
+
+  private static int getCategoryInput() {
+
+    try {
+      Scanner sc = new Scanner(System.in);
+      int category = sc.nextInt();
+      sc.nextLine(); // Consumes "\n"
+      return category;
+    }
+
+    catch (InputMismatchException e) {
+      return -1;
     }
   }
 }

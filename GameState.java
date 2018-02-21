@@ -56,12 +56,14 @@ public class GameState {
   }
 
   // Make sure target word is not blank, an actual word, and a sensible length
+  //Not really needed now, but good practice in case we allow users to give
+  //their own categories in the future
   private boolean checkTargetWord(String word) {
     if (word.equals("")) {
       return false;
     }
 
-    if (word.matches("^.*[^a-zA-Z].*$")) {
+    if (word.matches("^.*[^a-zA-Z\\s].*$")) {
       return false;
     }
 
@@ -84,14 +86,13 @@ public class GameState {
   boolean takeAndCheckGuessInput() {
     String guess = recieveUserGuess();
     if (guess.length() > 1) {
-
       return checkWordGuess(guess);
     }
+
     if (guess.equals("?")) {
       showHint();
       return false;
     } else {
-
       char letter = guess.charAt(0);
       return checkLetterGuess(letter);
     }
@@ -105,7 +106,8 @@ public class GameState {
     // Read user input string
     String userInput = sc.next().toLowerCase();
 
-    return userInput;
+    //Strip carriage returns and newlines
+    return userInput.replaceAll("\r", "").replaceAll("\n", "");
   }
 
   // Check a one-letter guess
@@ -133,7 +135,7 @@ public class GameState {
     setGuessesTaken(getGuessesTaken() + 1); // One more guess
     setGuessesLeft(getGuessesLeft() - 1); // Decrease chances left
 
-    if (guess.equals(getTargetWord())) {
+    if (guess.equals(getTargetWord().toLowerCase())) {
       lettersNotGuessed.clear();
       return true;
     } else {
@@ -166,7 +168,7 @@ public class GameState {
     String obscuredWord = "";
 
     for (int i = 0; i < word.length(); ++i) {
-      if (allowedLetters.contains(word.charAt(i))) {
+      if (allowedLetters.contains(word.toLowerCase().charAt(i)) || word.charAt(i) == ' ') {
         obscuredWord += word.charAt(i);
       } else {
         obscuredWord += "-";
