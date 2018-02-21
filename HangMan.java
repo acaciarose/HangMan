@@ -47,14 +47,12 @@ public class HangMan {
       System.out.println("Number of hints is larger than or equal to zero and smaller than 1000");
 
     } else {
-    	
-    	performMainGameLoop(game);
 
-
+      performMainGameLoop(game);
     }
   }
 
-private static void performMainGameLoop(GameState game) {
+  private static void performMainGameLoop(GameState game) {
     // Main game loop: while game not won or lost, keep accepting guesses
     while (!game.isGameWon() && !game.isGameLost()) {
       // Print word, obscuring letters not guessed so far
@@ -80,6 +78,5 @@ private static void performMainGameLoop(GameState game) {
     } else {
       System.out.println("You lost! The word was " + game.getTargetWord());
     }
-	
-}
+  }
 }

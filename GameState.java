@@ -34,7 +34,7 @@ public class GameState {
 
       // Add all letters in word to "not guessed" list
       for (int i = 0; i < targetWord.length(); ++i) {
-    	  char currentLetter = Character.toLowerCase(targetWord.charAt(i));
+        char currentLetter = Character.toLowerCase(targetWord.charAt(i));
         if (!lettersNotGuessed.contains(currentLetter)) {
           lettersNotGuessed.add(currentLetter);
         }
@@ -80,8 +80,6 @@ public class GameState {
     return (hints >= 0 && hints < 1000);
   }
 
-
-
   // Prompt for a guess and check if it's correct
   boolean takeAndCheckGuessInput() {
     String guess = recieveUserGuess();
@@ -116,7 +114,7 @@ public class GameState {
     setGuessesTaken(getGuessesTaken() + 1); // One more guess
     setGuessesLeft(getGuessesLeft() - 1); // Decrease chances left
 
-    for (int i = 0; i < lettersNotGuessed.size(); ++i) { // Loop over the not got
+    for (int i = 0; i < lettersNotGuessed.size(); ++i) { // Loop over the not guessed list
       // If the letter is in the "not yet guessed" list
       if (lettersNotGuessed.get(i) == letter) {
         // remove it and add it to the got list
@@ -142,7 +140,7 @@ public class GameState {
       return false;
     }
   }
-  
+
   // Show a hint (a random letter from the "not" list)
   void showHint() {
     if (getHintsLeft() <= 0) {
@@ -153,7 +151,7 @@ public class GameState {
       setHintsLeft(getHintsLeft() - 1);
     }
   }
-  
+
   // Print word, obscuring letters not guessed yet
   void obscureAndPrintWord() {
 
