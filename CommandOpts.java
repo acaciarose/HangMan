@@ -14,6 +14,7 @@ public class CommandOpts {
     // Default values
     setMaxguesses(DEFAULT_MAX_GUESSES);
     setMaxhints(DEFAULT_MAX_HINTS);
+    
     wordsource = "";
 
     extractOptionsFromCommandLineArgs(args);
@@ -39,6 +40,12 @@ public class CommandOpts {
       }
     }
   }
+  
+  // Make sure the word source file given exists and is a file
+  boolean checkWordSourceFileIsValid(String wordsource) {
+    File f = new File(wordsource);
+    return (f.isFile());
+  }
 
   // Make sure hints input is sensible.
   int parseHintsInput(String hint) {
@@ -53,12 +60,6 @@ public class CommandOpts {
     } catch (NumberFormatException e) {
       return -1;
     }
-  }
-
-  // Make sure the word source file given exists and is a file
-  boolean checkWordSourceFileIsValid(String wordsource) {
-    File f = new File(wordsource);
-    return (f.isFile());
   }
 
   // Make sure guesses input is sensible.

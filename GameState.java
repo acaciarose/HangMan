@@ -34,8 +34,9 @@ public class GameState {
 
       // Add all letters in word to "not guessed" list
       for (int i = 0; i < targetWord.length(); ++i) {
-        if (!lettersNotGuessed.contains(Character.toLowerCase(targetWord.charAt(i)))) {
-          lettersNotGuessed.add(Character.toLowerCase(targetWord.charAt(i)));
+    	  char currentLetter = Character.toLowerCase(targetWord.charAt(i));
+        if (!lettersNotGuessed.contains(currentLetter)) {
+          lettersNotGuessed.add(currentLetter);
         }
       }
 
@@ -79,29 +80,7 @@ public class GameState {
     return (hints >= 0 && hints < 1000);
   }
 
-  // Print word, obscuring letters not guessed yet
-  void obscureAndPrintWord() {
 
-    String obscuredWord = obscureWord(getTargetWord(), lettersGuessed);
-
-    System.out.println(obscuredWord);
-  }
-
-  // Take a word and return it with only the allowed letters shown
-  String obscureWord(String word, ArrayList<Character> allowedLetters) {
-
-    String obscuredWord = "";
-
-    for (int i = 0; i < word.length(); ++i) {
-      if (allowedLetters.contains(word.charAt(i))) {
-        obscuredWord += word.charAt(i);
-      } else {
-        obscuredWord += "-";
-      }
-    }
-
-    return obscuredWord;
-  }
 
   // Prompt for a guess and check if it's correct
   boolean takeAndCheckGuessInput() {
@@ -163,17 +142,7 @@ public class GameState {
       return false;
     }
   }
-
-  // Determine if game won (no letters not guessed)
-  boolean isGameWon() {
-    return (lettersNotGuessed.size() <= 0);
-  }
-
-  // Determine if game lost (some letters not guessed, no chances left)
-  boolean isGameLost() {
-    return (lettersNotGuessed.size() > 0 && getGuessesLeft() <= 0);
-  }
-
+  
   // Show a hint (a random letter from the "not" list)
   void showHint() {
     if (getHintsLeft() <= 0) {
@@ -183,6 +152,40 @@ public class GameState {
       System.out.println(lettersNotGuessed.get((int) (Math.random() * lettersNotGuessed.size())));
       setHintsLeft(getHintsLeft() - 1);
     }
+  }
+  
+  // Print word, obscuring letters not guessed yet
+  void obscureAndPrintWord() {
+
+    String obscuredWord = obscureWord(getTargetWord(), lettersGuessed);
+
+    System.out.println(obscuredWord);
+  }
+
+  // Take a word and return it with only the allowed letters shown
+  String obscureWord(String word, ArrayList<Character> allowedLetters) {
+
+    String obscuredWord = "";
+
+    for (int i = 0; i < word.length(); ++i) {
+      if (allowedLetters.contains(word.charAt(i))) {
+        obscuredWord += word.charAt(i);
+      } else {
+        obscuredWord += "-";
+      }
+    }
+
+    return obscuredWord;
+  }
+
+  // Determine if game won (no letters not guessed)
+  boolean isGameWon() {
+    return (lettersNotGuessed.size() <= 0);
+  }
+
+  // Determine if game lost (some letters not guessed, no chances left)
+  boolean isGameLost() {
+    return (lettersNotGuessed.size() > 0 && getGuessesLeft() <= 0);
   }
 
   public int getGuessesTaken() {

@@ -47,32 +47,39 @@ public class HangMan {
       System.out.println("Number of hints is larger than or equal to zero and smaller than 1000");
 
     } else {
+    	
+    	performMainGameLoop(game);
 
-      // Main game loop: while game not won or lost, keep accepting guesses
-      while (!game.isGameWon() && !game.isGameLost()) {
-        // Print word, obscuring letters not guessed so far
-        game.obscureAndPrintWord();
 
-        System.out.println("Guesses remaining: " + game.getGuessesLeft());
-
-        // Read in a guess and decide if it was correct
-        boolean wasGuessCorrect = game.takeAndCheckGuessInput();
-
-        if (wasGuessCorrect) {
-          System.out.println("Good guess!");
-        }
-        if (!wasGuessCorrect) {
-          System.out.println("Wrong guess!");
-        }
-      }
-
-      // Print winning message if won
-      if (game.isGameWon()) {
-        System.out.println("Well done!");
-        System.out.println("You took " + game.getGuessesTaken() + " guesses");
-      } else {
-        System.out.println("You lost! The word was " + game.getTargetWord());
-      }
     }
   }
+
+private static void performMainGameLoop(GameState game) {
+    // Main game loop: while game not won or lost, keep accepting guesses
+    while (!game.isGameWon() && !game.isGameLost()) {
+      // Print word, obscuring letters not guessed so far
+      game.obscureAndPrintWord();
+
+      System.out.println("Guesses remaining: " + game.getGuessesLeft());
+
+      // Read in a guess and decide if it was correct
+      boolean wasGuessCorrect = game.takeAndCheckGuessInput();
+
+      if (wasGuessCorrect) {
+        System.out.println("Good guess!");
+      }
+      if (!wasGuessCorrect) {
+        System.out.println("Wrong guess!");
+      }
+    }
+
+    // Print winning message if won
+    if (game.isGameWon()) {
+      System.out.println("Well done!");
+      System.out.println("You took " + game.getGuessesTaken() + " guesses");
+    } else {
+      System.out.println("You lost! The word was " + game.getTargetWord());
+    }
+	
+}
 }
