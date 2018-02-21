@@ -352,6 +352,14 @@ public class Tests {
 
 	}
 	
+	@Test
+	public void wordChooseNonExistentSourceWordListTest() {
+		WordsChooser wc = new WordsChooser();
+
+		assertNull(wc.getRandomWordFromSourceFile("doesntexist.txt")); //default guesses number
+
+	}
+	
 
 
 }
