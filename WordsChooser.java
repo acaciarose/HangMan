@@ -9,6 +9,10 @@ import java.util.Random;
 
 public class WordsChooser {
 
+  private static final int SCOTTISH_AREAS = 1;
+  private static final int EUROPEAN_COUNTRIES = 2;
+  private static final int SCOTTISH_TOWNS = 3;
+
   private final String[] scottishAreasWordList = {
     "Argyll and Bute",
     "Caithness",
@@ -53,12 +57,12 @@ public class WordsChooser {
   // Return a random word for given category
   public String getRandomWordInCategory(int category) {
     switch (category) {
-      case (1):
+      case (SCOTTISH_AREAS):
         return getScottishAreasWordList()[new Random().nextInt(getScottishAreasWordList().length)];
-      case (2):
+      case (EUROPEAN_COUNTRIES):
         return getEuropeanCountriesWordList()[
             new Random().nextInt(getEuropeanCountriesWordList().length)];
-      case (3):
+      case (SCOTTISH_TOWNS):
         return getScottishTownsWordList()[new Random().nextInt(getScottishTownsWordList().length)];
       default:
         return "";
@@ -133,7 +137,6 @@ public class WordsChooser {
   public String[] getScottishTownsWordList() {
     return scottishTownsWordList;
   }
-
 
   public String[] getEuropeanCountriesWordList() {
     return europeanCountriesWordList;
